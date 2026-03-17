@@ -1,14 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PopularHomes from "@/components/PopularHomes";
-// Updated at: 2026-03-17T01:36:00
+import Section from "@/components/Section";
+import { properties } from "@/data/properties";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
       <main className="flex-grow pt-48 pb-12">
-        <PopularHomes />
+        <div className="max-w-[1280px] mx-auto px-8">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Section key={i} properties={properties} />
+          ))}
+        </div>
         <div className="px-8 max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Placeholder for content */}
