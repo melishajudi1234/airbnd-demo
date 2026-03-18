@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Search, Globe, Menu, Home, Compass, Bell } from "lucide-react";
+import Link from "next/link";
 
 const BalloonIcon = () => (
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" className="w-5 h-5 fill-current">
@@ -42,10 +43,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 font-sans hidden lg:block ${isScrolled ? "py-3 shadow-md border-b border-zinc-200" : "py-4 shadow-sm"
+      className={`top-0 left-0 right-0 z-50 bg-[linear-gradient(180deg,#ffffff_39.9%,#f8f8f8_100%)] transition-all duration-300 font-sans block ${isScrolled ? "fixed py-3 shadow-md border-b border-zinc-200" : "py-4 shadow-sm"
         }`}
     >
-      <div className="max-w-[1280px] mx-auto px-8">
+      <div className="w-full px-8">
         {/* Top Section */}
         <div className="flex items-center justify-between relative transition-all duration-300">
           {/* Logo */}
@@ -58,7 +59,7 @@ const Header = () => {
           <div className={`absolute left-1/2 -translate-x-1/2 flex-1 flex justify-center transition-all duration-300 ${isScrolled ? "opacity-0 scale-95 pointer-events-none -translate-y-4" : "opacity-100 scale-100 pointer-events-auto translate-y-0"
             }`}>
             <nav className="flex items-center justify-center w-full">
-              <div className="flex items-end justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
+              <div className="flex items-end justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
                 <div className="flex flex-col items-center gap-1 group cursor-pointer pb-2 text-black border-b-2 border-black">
                   <div className="flex items-center gap-2">
                     <Home className="w-5 h-5" />
@@ -67,16 +68,20 @@ const Header = () => {
                 </div>
                 <div className="flex flex-col items-center gap-1 group cursor-pointer pb-2 text-zinc-500 hover:text-zinc-800 transition-colors">
                   <div className="flex items-center gap-2">
-                    <BalloonIcon />
+                    <div className="relative">
+                      <BalloonIcon />
+                      <span className="absolute bottom-5 left-5 bg-[#1e1e9b] text-white text-[8px] rounded-bl-none font-bold px-1 py-0.5 rounded-md">NEW</span>
+                    </div>
                     <span className="text-sm font-medium">Experiences</span>
-                    <span className="bg-zinc-800 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md">NEW</span>
                   </div>
                 </div>
                 <div className="flex flex-col items-center gap-1 group cursor-pointer pb-2 text-zinc-500 hover:text-zinc-800 transition-colors">
                   <div className="flex items-center gap-2">
-                    <BellIcon />
+                    <div className="relative">
+                      <BellIcon />
+                      <span className="absolute bottom-5 left-5 bg-[#1e1e9b] text-white text-[8px] rounded-bl-none font-bold px-1 py-0.5 rounded-md">NEW</span>
+                    </div>
                     <span className="text-sm font-medium">Services</span>
-                    <span className="bg-zinc-800 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md">NEW</span>
                   </div>
                 </div>
               </div>
@@ -89,9 +94,9 @@ const Header = () => {
             <div className="flex items-center bg-white border border-zinc-200 rounded-full py-1.5 pl-4 pr-1.5 shadow-sm hover:shadow-md transition-shadow cursor-pointer min-w-[300px]">
               <div className="flex items-center gap-3 flex-1 px-2">
                 <Home className="w-4 h-4 text-[#FF385C]" />
-                <span className="text-sm font-semibold text-zinc-900 border-r border-zinc-200 pr-4">Anywhere</span>
-                <span className="text-sm font-semibold text-zinc-900 border-r border-zinc-200 pr-4">Anytime</span>
-                <span className="text-sm text-zinc-500 pr-2">Add guests</span>
+                <span className="text-sm font-semibold text-zinc-900 border-r border-zinc-300 pr-4">Anywhere</span>
+                <span className="text-sm font-semibold text-zinc-900 border-r border-zinc-300 pr-4">Anytime</span>
+                <span className="text-sm font-semibold text-zinc-900 pr-2">Add guests</span>
               </div>
               <div className="bg-[#FF385C] p-2 rounded-full text-white ml-2">
                 <Search className="w-3 h-3 stroke-[4px]" />
@@ -101,11 +106,14 @@ const Header = () => {
 
           {/* User Menu */}
           <div className="flex items-center gap-3 transition-all duration-300 relative">
-            <div className={`text-sm font-semibold text-zinc-900 px-4 py-3 rounded-full hover:bg-zinc-100 cursor-pointer transition-opacity duration-300 ${isScrolled ? "opacity-0 invisible pointer-events-none w-0 truncate" : "opacity-100 visible"}`}>
+            <Link
+              href="/become-a-host"
+              className="text-sm font-semibold text-zinc-900 px-4 py-3 rounded-full hover:bg-zinc-100 cursor-pointer transition-opacity duration-300"
+            >
               Become a host
-            </div>
+            </Link>
 
-            <div className="p-3 hover:bg-zinc-100 rounded-full cursor-pointer transition-colors">
+            <div className="p-3 bg-zinc-100 hover:bg-zinc-200 rounded-full cursor-pointer transition-colors">
               <Globe className="w-4 h-4 text-zinc-900" />
             </div>
 
@@ -116,35 +124,41 @@ const Header = () => {
             >
               <div
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center gap-3 p-1.5 pl-3 border border-zinc-200 rounded-full cursor-pointer hover:shadow-md transition-shadow bg-white"
+                className="p-3 bg-zinc-100 hover:bg-zinc-200 rounded-full cursor-pointer transition-colors"
               >
                 <Menu className="w-4 h-4 text-zinc-900" />
               </div>
 
               {/* Static Dropdown UI (As seen in the feedback) */}
               {isMenuOpen && (
-                <div className="absolute top-12 right-0 w-[240px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.12)] rounded-xl py-2 z-[60] border border-zinc-100 animate-in fade-in zoom-in duration-200">
+                <div className="absolute top-12 right-0 w-[280px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.12)] rounded-xl py-2 z-[60] border border-zinc-100 animate-in fade-in zoom-in duration-200">
                   <div className="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 cursor-pointer text-zinc-700">
-                    <div className="w-5 h-5 flex items-center justify-center">?</div>
+                    <div className="border border-zinc-400 rounded-full flex px-1.5 items-center justify-center">
+                      <span className="text-sm">?</span>
+                    </div>
                     <span className="text-sm font-medium">Help Centre</span>
                   </div>
-                  <div className="h-[1px] bg-zinc-100 my-1 mx-4" />
-                  <div className="px-4 py-3 hover:bg-zinc-50 cursor-pointer">
+                  <div className="h-[1px] bg-zinc-200 my-1 mx-4" />
+                  <Link
+                    href="/become-a-host"
+                    className="px-4 py-3 hover:bg-zinc-50 cursor-pointer block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="text-sm font-bold text-zinc-900">Become a host</div>
-                        <div className="text-[12px] text-zinc-500 max-w-[130px] leading-tight mt-1">
-                          It's easy to start hosting and earn extra income.
+                        <div className="text-[12px] text-zinc-500 max-w-[180px] leading-tight mt-1">
+                          It’s easy to start hosting and earn extra income.
                         </div>
                       </div>
-                      <div className="w-10 h-10 bg-zinc-100 rounded-md overflow-hidden flex items-center justify-center text-xl">🏠</div>
+                      <div className="w-10 h-10 overflow-hidden flex items-center justify-center text-xl">🏠</div>
                     </div>
-                  </div>
-                  <div className="h-[1px] bg-zinc-100 my-1 mx-4" />
+                  </Link>
+                  <div className="h-[1px] bg-zinc-200 my-1 mx-4" />
                   <div className="px-4 py-3 hover:bg-zinc-50 cursor-pointer text-sm text-zinc-700">Refer a host</div>
                   <div className="px-4 py-3 hover:bg-zinc-50 cursor-pointer text-sm text-zinc-700">Find a co-host</div>
-                  <div className="h-[1px] bg-zinc-100 my-1 mx-4" />
-                  <div className="px-4 py-3 hover:bg-zinc-50 cursor-pointer text-sm font-bold text-zinc-900">Log in or sign up</div>
+                  <div className="h-[1px] bg-zinc-200 my-1 mx-4" />
+                  <div className="px-4 py-3 hover:bg-zinc-50 cursor-pointer text-sm text-zinc-700">Log in or sign up</div>
                 </div>
               )}
             </div>
@@ -152,11 +166,11 @@ const Header = () => {
         </div>
 
         {/* Large Search Bar Section - Expands when NOT scrolled */}
-        <div className={`flex justify-center transition-all duration-300 overflow-hidden ${isScrolled ? "max-h-0 opacity-0 -mt-2" : "max-h-[100px] opacity-100 mt-2"
+        <div className={`flex justify-center transition-all duration-300 overflow-hidden ${isScrolled ? "max-h-0 opacity-0 mt-2" : "max-h-[100px] opacity-100 mt-4 mb-4"
           }`}>
-          <div className="flex items-center bg-white border border-zinc-200 rounded-full shadow-lg hover:shadow-xl transition-shadow w-full max-w-[850px] py-1.5 pl-6 pr-2 mb-2">
+          <div className="flex items-center bg-white border border-zinc-200 rounded-full shadow-md transition-shadow w-full max-w-[850px] pl-6 pr-2 mb-2">
             {/* Where */}
-            <div className="flex-1 flex flex-col justify-center py-2 hover:bg-zinc-100 rounded-full pl-6 -ml-6 cursor-pointer">
+            <div className="flex-1 flex flex-col justify-center py-3 hover:bg-zinc-100 rounded-full pl-6 -ml-6 cursor-pointer">
               <span className="text-xs font-bold text-zinc-900">Where</span>
               <span className="text-sm text-zinc-400">Search destinations</span>
             </div>
@@ -164,14 +178,14 @@ const Header = () => {
             <div className="w-[1px] h-8 bg-zinc-200 mx-2"></div>
 
             {/* When */}
-            <div className="flex-1 flex flex-col justify-center py-2 hover:bg-zinc-100 rounded-full pl-6 cursor-pointer">
+            <div className="flex-1 flex flex-col justify-center py-3 hover:bg-zinc-100 rounded-full pl-6 cursor-pointer">
               <span className="text-xs font-bold text-zinc-900">When</span>
               <span className="text-sm text-zinc-400">Add dates</span>
             </div>
             <div className="w-[1px] h-8 bg-zinc-200 mx-2"></div>
 
             {/* Who */}
-            <div className="flex-[1.2] flex items-center justify-between pl-6 hover:bg-zinc-100 rounded-full cursor-pointer group overflow-hidden">
+            <div className="flex-[1.2] flex items-center justify-between py-1.5 pl-6 hover:bg-zinc-100 rounded-full cursor-pointer group overflow-hidden">
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-zinc-900">Who</span>
                 <span className="text-sm text-zinc-400">Add guests</span>

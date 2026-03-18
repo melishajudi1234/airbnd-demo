@@ -46,32 +46,40 @@ const Section = ({ properties, title = "Popular homes in Bengaluru" }: SectionPr
 
   return (
     <div className="mb-16 last:mb-0">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2 group cursor-pointer">
-          <h2 className="text-2xl font-bold text-zinc-900">{title}</h2>
-          <ChevronRight className="w-6 h-6 transform translate-y-0.5 group-hover:translate-x-1 transition-transform" />
+          <h2 className="text-xl font-bold text-zinc-900">{title}</h2>
+          <div className="bg-zinc-100 rounded-full p-1">
+            <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          </div>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => scroll("left")}
             disabled={!canScrollLeft}
-            className={`p-2 border rounded-full transition-all bg-white ${canScrollLeft
-                ? "border-zinc-200 hover:bg-zinc-100 hover:shadow-md cursor-pointer opacity-100"
-                : "border-zinc-200 cursor-default opacity-50"
+            className={`p-2 rounded-full transition-all bg-white ${canScrollLeft
+              ? "bg-zinc-100 hover:bg-zinc-200 cursor-pointer opacity-100"
+              : "bg-zinc-100 cursor-default opacity-50"
               }`}
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className={`w-4 h-4 ${canScrollLeft
+              ? "opacity-100"
+              : "opacity-50"
+              }`} />
           </button>
           <button
             onClick={() => scroll("right")}
             disabled={!canScrollRight}
-            className={`p-2 border rounded-full transition-all bg-white ${canScrollRight
-                ? "border-zinc-200 hover:bg-zinc-100 hover:shadow-md cursor-pointer opacity-100"
-                : "border-zinc-200 cursor-default opacity-50"
+            className={`p-2 rounded-full transition-all bg-white ${canScrollRight
+              ? "bg-zinc-100 hover:bg-zinc-200 cursor-pointer opacity-100"
+              : "bg-zinc-100 cursor-default opacity-50"
               }`}
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className={`w-4 h-4 ${canScrollLeft
+              ? "opacity-100"
+              : "opacity-50"
+              }`} />
           </button>
         </div>
       </div>
